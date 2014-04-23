@@ -1,0 +1,15 @@
+{
+  "name": "battletracker",
+  "version": "0.0.1",
+  "description": "DM toolkit for managing battle details",
+  "main": "index.js",
+  "dependencies": {
+    "express" : "3.x"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
