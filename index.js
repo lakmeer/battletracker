@@ -1,22 +1,25 @@
 
 // Require 3rd party modules
 
-var express = require('express');
+var Express  = require('express'),
+    SocketIO = require('socket.io');
 
 
 // Require local modules
 
-var routes = require('./src/routes');
+var routes   = require('./src/routes'),
+    settings = require('./src/settings').use(__dirname + '/config/settings.json');
 
 
 // Instantiate new Express app
 
-var app = express();
+var app = Express();
 
 
-// Establish middleware
+// Establish middleware cascade
 
-
+app.use(app.router);
+app.use(Express.static(__dirname + '/public'));
 
 
 // Configure routes
@@ -26,7 +29,30 @@ app.get('/dm',     routes.dm);
 app.get('/party',  routes.party);
 
 
-
 // Start HTTP server
+
+var httpServer = app.listen(settings.httpPort, function () {
+
+  console.log('HTTP Server started on port', httpServer.address().port);
+
+});
+
+
+// Start socket servers (port config nased on express HTTP server)
+
+var connections = {
+  dm    : [],
+  party : []
+};
+
+SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
+  connections.dm.push(socket);
+  socket.emit('connected', {});
+});
+
+SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
+  connections.party.push(socket);
+  socket.emit('connected', {});
+});
 
 
