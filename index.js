@@ -8,7 +8,8 @@ var Express  = require('express'),
 // Require local modules
 
 var routes   = require('./src/routes'),
-    settings = require('./src/settings').use(__dirname + '/config/settings.json');
+    settings = require('./src/settings').use('config/settings.json'),
+    lesscss  = require('./src/lesscss').use('public');
 
 
 // Instantiate new Express app
@@ -18,8 +19,8 @@ var app = Express();
 
 // Establish middleware cascade
 
-app.use(app.router);
-app.use(Express.static(__dirname + '/public'));
+app.use( lesscss.middleware );
+app.use( Express.static(__dirname + '/public') );
 
 
 // Configure routes
@@ -32,9 +33,7 @@ app.get('/party',  routes.party);
 // Start HTTP server
 
 var httpServer = app.listen(settings.httpPort, function () {
-
   console.log('HTTP Server started on port', httpServer.address().port);
-
 });
 
 
