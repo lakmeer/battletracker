@@ -1,6 +1,13 @@
 
 # Battletracker
 
+Provides a model of a tabletop RPG battle encounter, with two separate views;
+one to show the party, so they can visualise the initiative order and track
+statuses and effects; and a secret view for the DM to change state, create new
+monsters and control the encounter. The goal is to streamline the encounter
+by keeping players focused and engaged.
+
+
 ## Setup
 
 `package.json` in the root directory describes npm dependancies and app entry
