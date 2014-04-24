@@ -44,13 +44,10 @@ module.exports = {
 
       middleware: function (req, res, next) {
 
-        console.log('LessCSS::Middleware - received request:', req.url);
-
         var ext = last(req.url.split('.'));
 
         // Pass on this request if not for a stylesheet
         if (ext !== 'css') {
-          console.log('LessCSS::Middleware - passing on', req.url);
           return next();
         }
 
