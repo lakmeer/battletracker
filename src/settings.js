@@ -1,25 +1,19 @@
 
 // Require
 
-var fs = require('fs');
-
-
-// Helpers
-
-var readJSON = function (path) {
-  return JSON.parse(fs.readFileSync(path, 'utf-8'));
-};
+var fs   = require('fs'),
+    path = require('path');
 
 
 // Settings reference module
 
 module.exports = {
 
-  use: function (path) {
+  use: function (filepath) {
 
-    var settings = readJSON(path);
+    console.log('Reading settings:', path.resolve(filepath));
 
-    return settings;
+    return JSON.parse(fs.readFileSync(path.resolve(filepath), 'utf-8'));
 
   }
 
