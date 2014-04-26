@@ -2,6 +2,10 @@
   "name": "battletracker",
   "version": "0.0.1",
   "description": "DM toolkit for managing battle details",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:lakmeer/battletracker.git"
+  },
   "main": "index.js",
   "dependencies": {
     "express": "3.x",
