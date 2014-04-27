@@ -10,7 +10,9 @@
   "dependencies": {
     "express": "3.x",
     "socket.io": "^0.9.16",
-    "less": "^1.7.0"
+    "less": "^1.7.0",
+    "react": "^0.10.0",
+    "browserify": "^3.44.2"
   },
   "devDependencies": {},
   "scripts": {

@@ -9,6 +9,7 @@ var Express  = require('express'),
 
 var routes   = require('./src/routes'),
     settings = require('./src/settings').use('config/settings.json'),
+    clientjs = require('./src/clientjs').use('src/client'),
     lesscss  = require('./src/lesscss').use('public');
 
 
@@ -20,6 +21,7 @@ var app = Express();
 // Establish middleware cascade
 
 app.use( lesscss.middleware );
+app.use( clientjs.middleware );
 app.use( Express.static(__dirname + '/public') );
 
 
