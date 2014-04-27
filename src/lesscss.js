@@ -6,13 +6,7 @@ var fs   = require('fs'),
 
 var Less = require('less');
 
-//console.log(Less);
-
-
-// Helpers
-
-var last = function (l) { return l.length ? l[l.length - 1] : null; }
-
+var _ = require('./helpers');
 
 
 // LessCSS
@@ -44,7 +38,7 @@ module.exports = {
 
       middleware: function (req, res, next) {
 
-        var ext = last(req.url.split('.'));
+        var ext = _.getExtension(req.url);
 
         // Pass on this request if not for a stylesheet
         if (ext !== 'css') {
@@ -84,7 +78,7 @@ module.exports = {
 
         } else {
 
-          console.log('LessCSS::Middleware - not such file:', targetLessFile);
+          console.log('LessCSS::Middleware - no such file:', targetLessFile);
           next();
 
         }
