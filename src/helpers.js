@@ -12,10 +12,7 @@
 // Return last element in list; null if no elements
 
 var last = function last (list) {
-    if ( list != null ) {
-        return list.length ? list[list.length - 1] : null;
-    }
-    return null;
+    return (list && list.length) ? list[list.length - 1] : null;
 };
 
 
@@ -26,8 +23,7 @@ var last = function last (list) {
 
 var getExtension = function getExtension (filepath) {
     var extSplitChar = '.';
-    if ( filepath.indexOf(extSplitChar) != -1 )
-    {
+    if ( filepath.indexOf(extSplitChar) != -1 ) {
         return last( filepath.split('.') );
     }
     return null;
