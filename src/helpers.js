@@ -12,9 +12,10 @@
 // Return last element in list; null if no elements
 
 var last = function last (list) {
-
-   return list.length ? list[list.length - 1] : null;
-
+    if ( list != null ) {
+        return list.length ? list[list.length - 1] : null;
+    }
+    return null;
 };
 
 
@@ -24,9 +25,12 @@ var last = function last (list) {
 // Return nulls in the case of not being a valid path or having no extension.
 
 var getExtension = function getExtension (filepath) {
-
-  return last( filepath.split('.') );
-
+    var extSplitChar = '.';
+    if ( filepath.indexOf(extSplitChar) != -1 )
+    {
+        return last( filepath.split('.') );
+    }
+    return null;
 };
 
 
