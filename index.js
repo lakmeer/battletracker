@@ -58,4 +58,8 @@ setInterval(function () {
   connections.party.forEach(function (it) { it.emit('pulse', 'bleep!'); });
 }, 500);
 
+// Rendering test data
+setInterval(function () {
+  connections.party.forEach(function (it) { it.emit('render', "This random number is from the server: " + Math.floor( 100 * Math.random() )); });
+}, 500);
 

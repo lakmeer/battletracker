@@ -30,3 +30,14 @@ socket.on('pulse', function (text) {
   }, 100);
 });
 
+socket.on('render', function (text) {
+  console.log( "Testing React rendering system:" );
+
+  var React = require('react');
+
+  React.renderComponent(
+    React.DOM.p(null, text),
+    document.getElementById('example')
+  );
+});
+
