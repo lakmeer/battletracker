@@ -46,14 +46,16 @@ var connections = {
   party : []
 };
 
-SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
-  connections.dm.push(socket);
-  socket.emit('connected', {});
-});
+var socketServer = SocketIO.listen(httpServer);
 
-SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
-  connections.party.push(socket);
-  socket.emit('connected', {});
-});
+// Collect connections of each type as they come in
+socketServer.of('/dm').on('connection', function (socket) { connections.dm.push(socket); });
+socketServer.of('/party').on('connection', function (socket) { connections.party.push(socket); });
+
+// Send keepalive pulse to all connected screens
+setInterval(function () {
+  connections.dm.forEach(function (it) { it.emit('pulse', 'blip!'); });
+  connections.party.forEach(function (it) { it.emit('pulse', 'bleep!'); });
+}, 500);
 
 
