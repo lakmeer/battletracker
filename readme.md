@@ -22,10 +22,13 @@ Run the program with
 
 ## Testing
 
-Testing framework is not established yet, but recommend
-[Mocha](https://visionmedia.github.io/mocha/). Once the harness is set up,
-`package.json` also describes a test entry point which can be run with
-`npm test`
+We are using [Mocha](https://visionmedia.github.io/mocha/) for our test framework. 
+To run the unit tests, simply type in `mocha` in the root directory of the project. You can specify other interfaces using the `-R` flag. A list of interfaces can be found [here](http://visionmedia.github.io/mocha/#interfaces).
+
+We are also using the [blanket.js code coverage tool] (http://blanketjs.org/) to keep tabs on our code coverage.
+To run our tests and generate the test coverage report, run the following:
+`mocha --require blanket -R html-cov > coverage.html`
+
 
 
 ## Development
@@ -60,7 +63,6 @@ separate connection pools.
 
 #### Todo:
 
-- Add test framework, probably Mocha
 - Add tests for existing app scaffolding
 - Define app scope and core features
 - Design interfaces to support core features
