@@ -16,6 +16,14 @@ var last = function last (list) {
 };
 
 
+// Escape Quotes
+// Replace each instance of " in a string with \"
+
+var escapeQuotes = function escapeQuotes (str) {
+  return str.replace(/"/g, '\\"');
+}
+
+
 // Get Extension
 //
 // Given a string representing a file path, return the file extension.
@@ -36,6 +44,7 @@ var getExtension = function getExtension (filepath) {
 
 module.exports = {
   last: last,
+  escapeQuotes: escapeQuotes,
   getExtension: getExtension
 };
 
