@@ -13,15 +13,15 @@
     "less": "^1.7.0",
     "react": "^0.10.0",
     "browserify": "^3.44.2",
-    "mocha": "^1.18.2",
-    "blanket": "^1.1.6",
     "socket.io-client": "^0.9.16"
   },
   "devDependencies": {
+    "mocha": "^1.18.2",
+    "blanket": "^1.1.6",
     "nodemon": "^1.0.17"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "nodemon index.js"
   },
   "author": "",
