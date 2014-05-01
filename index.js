@@ -39,21 +39,7 @@ var httpServer = app.listen(settings.httpPort, function () {
 });
 
 
-// Start socket servers (port config nased on express HTTP server)
+// Start Socket server
 
-var connections = {
-  dm    : [],
-  party : []
-};
-
-SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
-  connections.dm.push(socket);
-  socket.emit('connected', {});
-});
-
-SocketIO.listen(httpServer).sockets.on('connection', function (socket) {
-  connections.party.push(socket);
-  socket.emit('connected', {});
-});
-
+// TODO: Real implementation of socket server module
 

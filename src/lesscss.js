@@ -24,10 +24,8 @@ module.exports = {
 
   use: function (basedir) {
 
-    var basedir = path.resolve(basedir);
-
-    var cache = {};
-
+    var basedir = path.resolve(basedir),
+        cache = {};
 
     // Once instantiated with base directory to work with, return object
     // containing relevant methods
@@ -48,6 +46,7 @@ module.exports = {
         // Does cached version already exist
         if (cache[ req.url ]) {
           console.log('LessCSS::Middleware - serving', req.url, 'from cache');
+          res.set('Content-Type', 'text/css');
           return res.end( cache[ req.url ] );
         }
 
@@ -72,6 +71,7 @@ module.exports = {
 
             console.log('Less::Middleware - compiled', targetLessFile, '-', css.length, 'bytes');
             cache[ req.url ] = css;
+            res.set('Content-Type', 'text/css');
             res.end( css );
 
           });

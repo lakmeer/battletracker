@@ -51,6 +51,7 @@ module.exports = {
         // Does cached version already exist
         if (cache[ req.url ]) {
           console.log('ClientJS::Middleware - serving', req.url, 'from cache');
+          res.set('Content-Type', 'application/javascript');
           return res.end( cache[ req.url ] );
         }
 
@@ -66,11 +67,20 @@ module.exports = {
           // can construct a Browserify instance that is bound to that file.
 
           var compiler = Browserify([ targetFilename ], {
-            basedir: basedir  // Set base path for relative require paths
+
+            // Set base path for relative require paths
+            basedir: basedir,
+
+            // Allow discovery of JSX files when walking dependencies
+            extensions: [ '.jsx' ]
+
           });
 
           // Compile
           compiler.bundle({}, function (err, data) {
+
+            // If we got to here, we're definitely gonna send some script
+            res.set('Content-Type', 'application/javascript');
 
             // If an error occurs, propagate it out to the browser's console so
             // we can see it on the inspector, instead of having to switch to
@@ -82,7 +92,7 @@ module.exports = {
               var message= err.message.replace(/:/, "\\n");
 
               // Report the error on the inspector console
-              res.end( 'console.error("' + message + '");');
+              res.end( 'console.error("' + _.escapeQuotes(message) + '");');
 
             } else {
 
