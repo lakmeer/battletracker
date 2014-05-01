@@ -82,7 +82,7 @@ module.exports = {
               var message= err.message.replace(/:/, "\\n");
 
               // Report the error on the inspector console
-              res.end( 'console.error("' + message + '");');
+              res.end( 'console.error("' + _.escapeQuotes( message ) + '");');
 
             } else {
 
