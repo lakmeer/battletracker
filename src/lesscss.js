@@ -69,7 +69,7 @@ module.exports = {
 
             // TODO: Give a shit about compilation errors
 
-            console.log('Less::Middleware - compiled', targetLessFile, '-', css.length, 'bytes');
+            console.log('Less::Middleware - compiled', req.url, '-', css.length, 'bytes');
             cache[ req.url ] = css;
             res.set('Content-Type', 'text/css');
             res.end( css );

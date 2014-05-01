@@ -66,13 +66,20 @@ module.exports = {
           // Now that we've confirmed that some file exists to be compiled, we
           // can construct a Browserify instance that is bound to that file.
 
+          // Time compilation
+          var startTime = Date.now();
+
+          // Instantiate browserify for this file
           var compiler = Browserify([ targetFilename ], {
 
             // Set base path for relative require paths
             basedir: basedir,
 
             // Allow discovery of JSX files when walking dependencies
-            extensions: [ '.jsx' ]
+            extensions: [ '.jsx' ],
+
+            // Don't look for builtins by default
+            insertGlobals: true
 
           });
 
@@ -96,9 +103,12 @@ module.exports = {
 
             } else {
 
-              console.log("ClientJS::Middleware - compiled", targetFilename, '-', data.length, 'bytes');
               cache[ req.url ] = data;
               res.end( data );
+
+              console.log("ClientJS::Middleware - compiled", req.url, '-',
+                data.length, 'bytes,',
+                (Date.now() - startTime), 'ms');
 
             }
 
