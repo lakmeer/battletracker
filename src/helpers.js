@@ -30,12 +30,21 @@ var getExtension = function getExtension (filepath) {
 };
 
 
+// Escape Quotes
+// Replace each instance of " in a string with \"
+
+var escapeQuotes = function escapeQuotes (str) {
+  return str.replace(/"/g, '\\"');
+}
+
+
 //
 // Export
 //
 
 module.exports = {
   last: last,
+  escapeQuotes: escapeQuotes,
   getExtension: getExtension
 };
 
