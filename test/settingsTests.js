@@ -10,8 +10,8 @@ var settings = require('../src/settings');
 suite ('Settings', function() {
   setup(function() {
     // mock fs.read
-    sinon.stub(fs, 'readFileSync').returns('{"httpPort" : 8080}');
-    sinon.stub(path, 'resolve').returns('config/settings.json');
+    sinon.stub(fs, 'readFileSync').returns('{"httpPort" : 1234}');
+    sinon.stub(path, 'resolve').returns('test.json');
   });
   
   test('path.resolve should be called once', function() {
@@ -25,9 +25,9 @@ suite ('Settings', function() {
     assert(fs.readFileSync.calledOnce);
   });
   
-  test('fs.readFileSync should return object with httpPort of 8080', function() {
-    var serverSettings = settings.use('config/settings.json');
-    assert.equal(8080, serverSettings.httpPort);
+  test('fs.readFileSync should return object with httpPort of 1234', function() {
+    var serverSettings = settings.use('test.json');
+    assert.equal(1234, serverSettings.httpPort);
   });  
   
   teardown(function() {
