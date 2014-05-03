@@ -9,16 +9,16 @@
   "main": "index.js",
   "dependencies": {
     "express": "3.x",
-    "socket.io": "^0.9.16",
     "less": "^1.7.0",
     "react": "^0.10.0",
-    "browserify": "^3.44.2",
     "reactify": "^0.13.1",
-    "socket.io-client": "^0.9.16",
-    "sinon": "^1.9.1"
+    "browserify": "^3.44.2",
+    "socket.io": "^0.9.16",
+    "socket.io-client": "^0.9.16"
   },
   "devDependencies": {
     "mocha": "^1.18.2",
+    "sinon": "^1.9.1",
     "blanket": "^1.1.6",
     "nodemon": "^1.0.17"
   },
@@ -26,6 +26,7 @@
     "test": "mocha -u tdd",
     "coverage": "mocha -u tdd --require blanket -R html-cov > coverage.html",
     "develop": "nodemon index.js",
+    "bundle-react": "mkdir -p public/lib ; browserify -r react > public/lib/react.js",
     "start": "node index.js"
   },
   "author": "",
