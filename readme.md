@@ -50,7 +50,7 @@ the time.
 We are using [Mocha](https://visionmedia.github.io/mocha/) for our test
 framework. Run the suite with the default interface using `npm run`:
 
-    $ npm run test
+    $ npm test
 
 This uses `mocha` with the tdd style:
 
