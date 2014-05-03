@@ -1,5 +1,5 @@
-var blanket = require("blanket");
-var assert = require("assert");
+var blanket = require('blanket');
+var assert = require('assert');
 
 var helpers = require('../src/helpers');
 
