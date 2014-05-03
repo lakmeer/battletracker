@@ -13,13 +13,20 @@
     "less": "^1.7.0",
     "react": "^0.10.0",
     "browserify": "^3.44.2",
+    "reactify": "^0.13.1",
+    "socket.io-client": "^0.9.16",
+    "sinon": "^1.9.1"
+  },
+  "devDependencies": {
     "mocha": "^1.18.2",
     "blanket": "^1.1.6",
-    "reactify": "^0.13.1"
+    "nodemon": "^1.0.17"
   },
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -u tdd",
+    "coverage": "mocha -u tdd --require blanket -R html-cov > coverage.html",
+    "develop": "nodemon index.js",
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",

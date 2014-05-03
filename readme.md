@@ -10,47 +10,60 @@ by keeping players focused and engaged.
 
 ## Setup
 
-`package.json` in the root directory describes npm dependancies and app entry
-point. Install all dependancies by running `install` in repo folder:
+`package.json` in the root directory describes npm dependencies and app entry
+point. Install all dependencies by running `install` in repo folder:
 
     $ npm install
 
-Run the program with
 
-    $ node index.js
+## Running
 
+To run Battletracker, first issue:
 
-## Testing
+    $ npm start
 
-We are using [Mocha](https://visionmedia.github.io/mocha/) for our test framework. 
-To run the unit tests, simply type in `mocha` in the root directory of the project. You can specify other interfaces using the `-R` flag. A list of interfaces can be found [here](http://visionmedia.github.io/mocha/#interfaces).
-
-We are also using the [blanket.js code coverage tool] (http://blanketjs.org/) to keep tabs on our code coverage.
-To run our tests and generate the test coverage report, run the following:
-`mocha --require blanket -R html-cov > coverage.html`
-
+Then open two browser windows at `http://localhost:8080` (unless you changed the
+port in the configuration). Navigate one window to `/dm`, and keep it secret.
+Navigate the other browser to `/party`, and make it visible to your adventuring
+party.
 
 
 ## Development
 
-Recommend installing `nodemon` as a system utility:
+For development, there are extra utilities to be installed globally with `-g`:
 
-    $ sudo npm install -g nodemon
+    $ sudo npm install -g nodemon mocha
 
-This gives you the `nodemon` command-line util which replaces `node` in
-invocations:
+Now you can invoke the server using:
 
-    $ nodemon index.js
+    $ nodemon
 
-Running this way will restart the server whenever a source file is modified.
+Running this way will use `nodemon` to restart the server whenever a source
+file is modified. Without an argument, `nodemon` runs `index.js` by default.
 Restarting will halt if there is a interpreter error and try again when the
 file has been touched again. This saves starting and stopping the server all
 the time.
 
-This process could also migrate to [Grunt](https://github.com/gruntjs/grunt) if
-grunt becomes appropriate to control build cycles in the project's future
-development. Grunt also supports LiveReload via `grunt-contrib-watch` which
-would further optimise the iteration cycle.
+
+## Testing
+
+We are using [Mocha](https://visionmedia.github.io/mocha/) for our test
+framework. Run the suite with the default interface using `npm run`:
+
+    $ npm run test
+
+This uses `mocha` with the tdd style:
+
+    $ mocha -u tdd
+
+You can specify other interfaces using `$ mocha` with the `-R` flag. A list of
+interfaces can be found [here](http://visionmedia.github.io/mocha/#interfaces).
+The test runner is also bound to `npm test`.
+
+We are also using the [blanket.js code coverage tool](http://blanketjs.org/)
+to keep tabs on our code coverage. Generate the test coverage report, run:
+
+    $ npm run coverage
 
 
 ## Required work
@@ -58,8 +71,8 @@ would further optimise the iteration cycle.
 Program currently consists of slightly decorated Express server featuring two
 socket channels. Currently supports routes with static views, transparent
 serving of LESS stylesheets, and configuration externalisation via json files.
-When started, launches HTTP server and two Socket.io sockets maintaining
-separate connection pools.
+When started, launches HTTP server, and Socket.io channel with two namespaces
+maintaining separate connection pools.
 
 #### Todo:
 
