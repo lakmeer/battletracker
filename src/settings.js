@@ -1,8 +1,8 @@
 
 // Require
 
-var fs   = require('fs'),
-    path = require('path');
+var fs   = require('fs');
+var path = require('path');
 
 
 // Settings reference module

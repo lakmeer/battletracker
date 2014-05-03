@@ -1,6 +1,7 @@
 
-var React         = require('react'),
-    TestComponent = require('./components/testComponent.jsx');
+var React = require('react');
+
+var TestComponent = require('./components/testComponent.jsx');
 
 window.onload = function () {
   React.renderComponent(

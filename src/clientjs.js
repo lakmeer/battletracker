@@ -1,8 +1,8 @@
 
 // Require
 
-var fs   = require('fs'),
-    path = require('path');
+var fs   = require('fs');
+var path = require('path');
 
 var Browserify = require('browserify');
 
@@ -78,10 +78,15 @@ module.exports = {
             // Allow discovery of JSX files when walking dependencies
             extensions: [ '.jsx' ],
 
-            // Don't look for builtins by default
-            insertGlobals: true
+            // Don't expect processed versions of externalised modules
+            bundleExternal: false
 
           });
+
+          // Allow controller to specify externalised modules
+          if (config.external) {
+            compiler.external( config.external );
+          }
 
           // Compile
           compiler.bundle({}, function (err, data) {
