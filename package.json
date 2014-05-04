@@ -32,7 +32,9 @@
   "author": "",
   "license": "ISC",
   "browserify": {
-    "transform": [ "reactify" ]
+    "transform": [
+      "reactify"
+    ]
   },
   "config": {
     "blanket": {

@@ -9,6 +9,14 @@ var Less = require('less');
 var _ = require('./helpers');
 
 
+// Local helpers
+
+var generateErrorCss = function generateErrorCss (message) {
+  return "/* Compilation error: " + err.message + " */\n" +
+    "html { background: darkred; color: white; }";
+};
+
+
 // LessCSS
 //
 // Intercept css stylesheet requests and serve dynamically cached and compiled
@@ -17,15 +25,22 @@ var _ = require('./helpers');
 // and save it for next time.
 //
 // TODO: Monitor filesystem for changes to previously requested files
+//
+// Options:
+//
+//   force (false) -
+//     Don't cache, just compile fresh every time. Use for iterating on styles.
+//
 
 module.exports = {
 
   // Initialiser - takes base directory to find less stylesheets in
 
-  use: function (basedir) {
+  use: function (basedir, options) {
 
     var basedir = path.resolve(basedir),
-        cache = {};
+        opts    = options || { force: false },
+        cache   = {};
 
     // Once instantiated with base directory to work with, return object
     // containing relevant methods
@@ -44,7 +59,7 @@ module.exports = {
         }
 
         // Does cached version already exist
-        if (cache[ req.url ]) {
+        if (cache[ req.url ] && !opts.force) {
           console.log('LessCSS::Middleware - serving', req.url, 'from cache');
           res.set('Content-Type', 'text/css');
           return res.end( cache[ req.url ] );
@@ -65,15 +80,22 @@ module.exports = {
           // when we want. As long as we don't call next() (or need any later
           // middleware) it doesn't matter. At least it'll be sync from cache.
 
-          Less.render( fs.readFileSync( targetLessFile, 'utf-8' ), function (err, css) {
+          var includePath = path.join(basedir, path.dirname(req.url));
+          var lessSource  = fs.readFileSync( targetLessFile, 'utf-8' )
 
-            // TODO: Give a shit about compilation errors
+          Less.render( lessSource, { paths: [ includePath ] }, function (err, css) {
 
-            console.log('Less::Middleware - compiled', req.url, '-', css.length, 'bytes');
-            cache[ req.url ] = css;
             res.set('Content-Type', 'text/css');
-            res.end( css );
 
+            if (err) {
+              console.error('LessCSS::Middleware - compilation error:');
+              console.error(err.message);
+              res.end( generateErrorCss( err.message ));
+            } else {
+              console.log('LessCSS::Middleware - compiled', req.url, '-', css.length, 'bytes');
+              cache[ req.url ] = css;
+              res.end( css );
+            }
           });
 
         } else {

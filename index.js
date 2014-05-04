@@ -1,8 +1,8 @@
 
 // Require 3rd party modules
 
-var Express  = require('express'),
-    SocketIO = require('socket.io');
+var Express  = require('express');
+var SocketIO = require('socket.io');
 
 
 // Require local modules
@@ -10,7 +10,7 @@ var Express  = require('express'),
 var routes   = require('./src/routes'),
     settings = require('./src/settings').use('config/settings.json'),
     clientjs = require('./src/clientjs').use('src/client'),
-    lesscss  = require('./src/lesscss').use('public');
+    lesscss  = require('./src/lesscss').use('public', { force: true });
 
 
 // Instantiate new Express app
