@@ -1,0 +1,82 @@
+
+// Import
+
+@import 'dimensions';
+@import 'colors';
+@import 'global';
+
+
+// Party View
+
+#party-view {
+  padding: @gutter;
+}
+
+#party-view:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+// Combatants Roster
+
+.roster {
+  width: 100%;
+  float: left;
+  border-collapse: collapse;
+  border: 1px solid @col_border;
+
+  .combatant {
+    line-height: 2.5em;
+    white-space: nowrap;
+
+    &.current {
+      background: rgba(0,0,0,0.1);
+    }
+  }
+
+  .name, .hp {
+    padding: 0 0.5em;
+  }
+
+  .statuses {
+    padding: 0;
+  }
+
+  .status {
+    float: right;
+    font-size: smaller;
+    font-weight: bold;
+    padding: 0 1em;
+    color: rgba(0,0,0,0.5);
+    display: inline-block;
+
+    &.red   { background: @status_red; }
+    &.green { background: @status_green; }
+    &.blue  { background: @status_blue; }
+    &.grey  { background: @status_grey; }
+
+    & + .status {
+      border-right: 1px solid transparent;
+    }
+  }
+
+  tr + tr td {
+    border-top: 1px solid @col_border;
+  }
+}
+
+
+// Encounter Metadata
+
+.encounter-metadata {
+  width: 200px;
+  padding: @gutter;
+  border: 1px solid @col_border;
+
+  .data {
+    line-height: 2em;
+  }
+}
+

@@ -1,0 +1,53 @@
+
+//
+// Global Styles
+//
+
+
+// Sane box model plz
+
+* {
+  box-sizing: border-box;
+}
+
+
+// Reset page
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+
+// Base styles
+
+html {
+  min-height: 100%;
+  background: @bg_primary;
+  background: -webkit-linear-gradient(top, white, @bg_primary);
+}
+
+body {
+  color: @col_primary;
+  font-size: 14px;
+  font-family: 'Anonymous Pro', 'Sans Mono', 'Lucida Console', 'Liberation Mono', monospace;
+}
+
+
+// Layout - columns
+
+.layout-columns {
+  display: table;
+  width: 100%;
+
+  .col {
+    display: table-cell;
+    vertical-align: top;
+    width: 100%; // Attempt to be as wide as possible
+  }
+
+  .col + .col {
+    padding-left: @gutter;
+  }
+}
+
