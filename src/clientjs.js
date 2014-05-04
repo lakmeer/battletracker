@@ -49,11 +49,11 @@ module.exports = {
         }
 
         // Does cached version already exist
-        if (cache[ req.url ]) {
-          console.log('ClientJS::Middleware - serving', req.url, 'from cache');
-          res.set('Content-Type', 'application/javascript');
-          return res.end( cache[ req.url ] );
-        }
+        //if (cache[ req.url ]) {
+        //  console.log('ClientJS::Middleware - serving', req.url, 'from cache');
+        //  res.set('Content-Type', 'application/javascript');
+        //  return res.end( cache[ req.url ] );
+        //}
 
         // Compute expected path of corresponding less source
         var targetFilename = path.resolve(basedir + req.url);
