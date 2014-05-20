@@ -48,5 +48,18 @@ describe('helpers', function () {
     });
   });
 
+  describe('#makeStruct()', function () {
+    it('should return a constructor function', function () {
+      var structConstructor = helpers.makeStruct('id name');
+      assert.equal(typeof structConstructor, 'function');
+    });
+
+    it('should return a constructor function which has the same number of parameters', function () {
+      var structConstructor = helpers.makeStruct('id name');
+      //assert.equal(structConstructor.arguments.length, 2);
+      var struct = new structConstructor(12, "test");
+      assert.equal(struct.id, 12);
+    });
+  })
 });
 
