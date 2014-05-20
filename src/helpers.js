@@ -54,6 +54,17 @@ var escapeQuotes = function escapeQuotes (str) {
 }
 
 
+// Unique ID Generator
+
+var uniqueId = function () {
+  var id = 0;
+
+  return function () {
+    return id++;
+  }
+}
+
+
 //
 // Export
 //
@@ -62,6 +73,7 @@ module.exports = {
   last: last,
   escapeQuotes: escapeQuotes,
   getExtension: getExtension,
-  makeStruct: makeStruct
+  makeStruct: makeStruct,
+  uniqueId: uniqueId
 };
 

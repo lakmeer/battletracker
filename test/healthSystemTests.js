@@ -1,18 +1,15 @@
 var blanket = require('blanket');
-var entityModel = require('../src/model/entity.js');
-var healthComponentModel = require('../src/model/healthComponent.js');
+var sinon   = require('sinon');
+var assert  = require('assert');
 
-var healthSystem = require('../src/systems/health.js');
-
-
-var blanket = require('blanket'),
-  sinon = require('sinon'),
-  assert = require('assert');
-
-var fs = require('fs'),
-  path = require('path');
+var fs   = require('fs');
+var path = require('path');
 
 var settings = require('../src/settings');
+
+var Entity               = require('../src/model/entity.js');
+var healthComponentModel = require('../src/model/healthComponent.js');
+var healthSystem         = require('../src/systems/health.js');
 
 
 // Health system test suite
@@ -22,9 +19,9 @@ suite('Health System', function () {
   var hp = null;
 
   setup(function () {
-    monster = entityModel.createEntity('monster');
-    hp = healthComponentModel.createHealthComponent();
-    entityModel.addComponent(monster, hp);
+    monster = new Entity('monster');
+    hp = healthComponentModel.create();
+    monster.addComponent(hp);
   });
 
   test('Create entity with health component', function () {
