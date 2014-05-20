@@ -11,7 +11,7 @@ var Entity = function Entity (name, components) {
 }
 
 Entity.prototype.newFromThis = function () {
-  var updated = new Entity(this.name, this.components);
+  var updated = new Entity(this.name, this.components); // Error - new copy with share compenets obj
   updated.id = this.id;
   return updated;
 }

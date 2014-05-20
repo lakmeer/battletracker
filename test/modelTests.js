@@ -8,8 +8,8 @@ var path = require('path');
 
 var settings = require('../src/settings');
 
-var Entity = require('../src/model/entity.js');
-var healthComponentModel = require('../src/model/healthComponent.js');
+var Entity          = require('../src/model/entity.js');
+var HealthComponent = require('../src/model/healthComponent.js');
 
 
 // Settings test suite
@@ -27,7 +27,7 @@ suite('Model', function () {
 
   test('Create entity with health component', function () {
     var monster = new Entity('monster');
-    var hp = healthComponentModel.create();
+    var hp      = new HealthComponent;
 
     monster.addComponent(hp);
     assert.equal(monster.components.health, hp, "component has not been successfully added");

@@ -1,27 +1,30 @@
-module.exports = {
 
-  setHp: function (entity, hp) {
-    if (entity.components.health) {
-      entity.components.health.hitPoints = hp;
-    } else {
-      console.log("" + entity.name + 'does not have health.');
-    }
-  },
+var ComponentSystem = require('../componentSystem.js');
 
-  damage: function (entity, amount) {
-    if (entity.components.health) {
-      entity.components.health.hitPoints -= amount;
-    } else {
-      console.log("" + entity.name + 'cannot be damaged.');
-    }
-  },
 
-  heal: function (entity, amount) {
-    if (entity.components.health) {
-      entity.components.health.hitPoints += amount;
-    } else {
-      console.log("" + entity.name + 'cannot be healed.');
-    }
-  },
+// Health
 
-}
+var healthSystem = new ComponentSystem('health', function () {
+  return {
+    hitPoints: 0
+  }
+});
+
+healthSystem.addMethod('setHp', function (entity, hp) {
+  entity.components.health.hitPoints = hp;
+});
+
+healthSystem.addMethod( 'damage', function (entity, amount) {
+  entity.components.health.hitPoints -= amount;
+});
+
+healthSystem.addMethod( 'heal', function (entity, amount) {
+  entity.components.health.hitPoints += amount;
+});
+
+
+
+// Export
+
+module.exports = healthSystem;
+
