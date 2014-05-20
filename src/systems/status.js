@@ -23,7 +23,7 @@ statusSystem.addMethod('update', function (entity, hook) {
     }
 
     if (status.remaining <= 0) {
-      ....
+      // Deal with this
     }
   });
 });
