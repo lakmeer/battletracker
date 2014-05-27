@@ -2,17 +2,10 @@ var blanket = require('blanket');
 var sinon   = require('sinon');
 var assert  = require('assert');
 
-var fs   = require('fs');
-var path = require('path');
-
-var settings = require('../src/settings');
-
 var Entity       = require('../src/model/entity.js');
 var healthSystem = require('../src/systems/health.js');
 var statusSystem = require('../src/systems/status.js');
 
-
-// Status system test suite
 
 suite('Status System', function () {
   var monster = null;

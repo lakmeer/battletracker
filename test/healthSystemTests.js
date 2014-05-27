@@ -7,8 +7,8 @@ var path = require('path');
 
 var settings = require('../src/settings');
 
-var Entity          = require('../src/model/entity.js');
-var healthSystem    = require('../src/systems/health.js');
+var Entity       = require('../src/model/entity');
+var healthSystem = require('../src/systems/health');
 
 
 // Health system test suite
