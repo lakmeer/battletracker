@@ -47,7 +47,7 @@ the time.
 
 ## Testing
 
-We are using [Mocha](https://visionmedia.github.io/mocha/) for our test
+We are using [Mocha](http://mochajs.org/) for our test
 framework. Run the suite with the default interface using `npm run`:
 
     $ npm test
@@ -57,7 +57,7 @@ This uses `mocha` with the tdd style:
     $ mocha -u tdd
 
 You can specify other interfaces using `$ mocha` with the `-R` flag. A list of
-interfaces can be found [here](http://visionmedia.github.io/mocha/#interfaces).
+interfaces can be found [here](http://mochajs.org/#interfaces).
 The test runner is also bound to `npm test`.
 
 We are also using the [blanket.js code coverage tool](http://blanketjs.org/)
